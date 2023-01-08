@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Call JS Functions example</title>
+  </head>
+
+  <body>
+    <script>
+      const importObject = {
+        console: {
+          log(arg) {
+            console.log(arg);
+          },
+        },
+      };
+      WebAssembly.instantiateStreaming(
+        fetch("call_js_functions.wasm"),
+        importObject
+      ).then((obj) => {
+        obj.instance.exports.logIt(); // Logs 13 in console
+      });
+    </script>
+  </body>
+</html>

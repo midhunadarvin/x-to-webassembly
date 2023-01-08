@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Function calls example</title>
+  </head>
+
+  <body>
+    <script>
+      WebAssembly.instantiateStreaming(fetch("function_calls.wasm")).then(
+        (obj) => {
+          const result = obj.instance.exports.getAnswerPlus1();
+          document.body.innerHTML = "The result from wasm is " + result; // "43"
+        }
+      );
+    </script>
+  </body>
+</html>
